@@ -1,2 +1,0 @@
-#!/bin/bash
-echo {a..z}-{a-n} {a..z}-{p-z} {a-n}-{a..z} {a-p}-{a..z} sort | head -n 64
