@@ -1,0 +1,2 @@
+#!/bin/bash
+ls -la PATH | find . -type d | wc -l
