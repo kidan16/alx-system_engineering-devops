@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # A Bash script that displays Best School 10 times.
-for ((a=0; a<10;a++))
+for ((a=0; a<10;a++)); do
 {
-echo "Holberton School"
+	echo "Holberton School"
 }
+done
