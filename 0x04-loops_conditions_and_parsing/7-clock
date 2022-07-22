@@ -7,7 +7,7 @@ y=1
 while [[ $x -le 12 ]]; do
 echo "Hour: $x"
 	while [[ $y -le 59 ]]; do
-		echo $y
+		echo "$y"
 	y=$((y+1))
 	done
 	y=0
