@@ -8,7 +8,7 @@ y=1
 
 while [[ $x -le 12 ]]; do
 	echo "Hour: $x"
-	y=0
+	((y=0))
 
 	while [[ $y -le 59 ]]; do
 		echo "$y"
