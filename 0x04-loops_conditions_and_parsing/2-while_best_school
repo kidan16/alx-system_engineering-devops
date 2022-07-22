@@ -2,7 +2,7 @@
 # A Bash script that displays Best School 10 times.
 x=0
 while [[ $x -le 10 ]]; do
-echo "Best School"
-x=$((x + 1))
+	echo "Best School"
+	x=$((x + 1))
 done
 
