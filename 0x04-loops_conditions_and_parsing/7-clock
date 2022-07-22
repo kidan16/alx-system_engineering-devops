@@ -6,11 +6,11 @@
 x=0
 y=1
 
-while [ $x -le 12 ] ; do
+while ((x <= 12)); do
 	echo "Hour: $x"
 	((y=0))
 
-	while [ $y -le 59 ] ; do
+	while ((y <= 59)); do
 		echo "$y"
 		((y++))
 	done
