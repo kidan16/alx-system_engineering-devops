@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Set a shell for a desired user
 # and execute the "whoami" command
-#
 
 user="$1"
 
