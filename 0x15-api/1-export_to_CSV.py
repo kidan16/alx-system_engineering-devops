@@ -1,32 +1,21 @@
 #!/usr/bin/python3
-"""
-a script that
-returns information about his/her TODO list progress.
-"""
-import csv
+'''
+This program write user data
+to csv file
+'''
+
 import requests
-from sys import argv
-
-
-def export_to_csv():
-    """ returns information about his/her TODO list progress. """
-    user = (requests.get(
-        'http://jsonplaceholder.typicode.com/users?id={}'.format(
-            argv[1]))).json()
-    res = requests.get(
-        'https://jsonplaceholder.typicode.com/todos?userId={}'.format(argv[1]))
-    done_task = []
-    num_all_task = 0
-    num_done_task = 0
-    userId = user[0].get('id')
-    for todo in res.json():
-        with open('{}.csv'.format(userId), mode='a') as todo_file:
-            todo_writer = csv.writer(
-                todo_file,
-                quoting=csv.QUOTE_ALL)
-            todo_writer.writerow([userId, user[0].get('username'),
-                                  todo.get('completed'), todo.get('title')])
-
+import sys
 
 if __name__ == '__main__':
-    export_to_csv()
+    emp_id = int(sys.argv[1])
+    users_url = "https://jsonplaceholder.typicode.com/users/{}"
+    emp_data = requests.get(users_url.format(emp_id)).json()
+    emp_uname = emp_data.get('username')
+    tasks = requests.get("https://jsonplaceholder.typicode.com/todos").json()
+    filename = str(emp_id) + '.csv'
+    with open(filename, mode='w') as f:
+        for task in tasks:
+            if task.get('userId') == emp_id:
+                f.write('"{:d}","{:s}","{}","{:s}"\n'.format(emp_id,
+                        emp_uname, task.get('completed'), task.get('title')))

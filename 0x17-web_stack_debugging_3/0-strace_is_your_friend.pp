@@ -1,7 +1,5 @@
-# Fix an issue when Wordpress is
-# trying to initializes
-
+# Fixes a wordpress site running on apache2
 exec { 'fix-wordpress':
-  command => "/bin/sed -i /var/www/html/wp-settings.php \
-  -e 's/class-wp-locale.phpp/class-wp-locale.php/'"
+  command => 'sed -i s/phpp/php/g /var/www/html/wp-settings.php; sudo service apache2 restart',
+  path    => ['/bin', '/usr/bin', '/usr/sbin']
 }

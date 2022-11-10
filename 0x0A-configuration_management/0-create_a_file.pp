@@ -1,9 +1,8 @@
-# Create a file using Puppet
-
-file { '/tmp/holberton':
-  ensure  => 'present',
-  content => 'I love Puppet',
+# creates a file in the /tmp directory
+file { '/tmp/school':
+  ensure  => 'file',
+  mode    => '0744',
   owner   => 'www-data',
   group   => 'www-data',
-  mode    => '0744'
+  content => 'I love Puppet',
 }

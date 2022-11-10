@@ -1,1 +1,1 @@
-# 0x13. Firewall
+using firewall to control incoming and outcoming ports

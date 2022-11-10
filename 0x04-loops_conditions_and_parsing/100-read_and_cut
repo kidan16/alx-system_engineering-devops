@@ -1,13 +1,9 @@
 #!/usr/bin/env bash
+# Displays username, user id, Home directory path for the user int /etc/passwd
 
-# A Bash script that displays the content of the file /etc/passwd.
+i=0
 
-# Your script should only display:
-
-# username
-# user id
-# Home directory path for the user
-exec < /etc/passwd
-while read -r passwd_output ; do
-echo "$passwd_output" | cut -d':' -f1,3,6
+while [ $i != 1 ]; do
+    cut -d: -f1,3,7 /etc/passwd
+    i=1
 done

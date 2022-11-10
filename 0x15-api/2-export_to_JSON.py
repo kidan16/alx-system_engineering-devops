@@ -1,34 +1,27 @@
 #!/usr/bin/python3
-"""
-a script that
-returns information about his/her TODO list progress.
-"""
+'''
+This program write user data
+to json file
+'''
+
 import json
 import requests
-from sys import argv
-
-
-def export_to_json():
-    """ returns information about his/her TODO list progress. """
-    user = (requests.get(
-        'http://jsonplaceholder.typicode.com/users?id={}'.format(
-            argv[1]))).json()
-    res = requests.get(
-        'https://jsonplaceholder.typicode.com/todos?userId={}'.format(argv[1]))
-    tasks = []
-    to_json = {}
-    userId = user[0].get('id')
-    username = user[0].get('username')
-    for todo in res.json():
-        dic_todo = {}
-        dic_todo['task'] = todo.get('title')
-        dic_todo['completed'] = todo.get('completed')
-        dic_todo['username'] = username
-        tasks.append(dic_todo)
-    to_json[userId] = tasks
-    with open('{}.json'.format(userId), 'w') as todo_file:
-        json.dump(to_json, todo_file)
-
+import sys
 
 if __name__ == '__main__':
-    export_to_json()
+    emp_id = int(sys.argv[1])
+    users_url = "https://jsonplaceholder.typicode.com/users/{}"
+    emp_data = requests.get(users_url.format(emp_id)).json()
+    emp_uname = emp_data.get('username')
+    tasks = requests.get("https://jsonplaceholder.typicode.com/todos").json()
+    filename = str(emp_id) + '.json'
+    tasks_obj = []
+    with open(filename, mode='w') as f:
+        for task in tasks:
+            if task.get('userId') == emp_id:
+                task_obj = {"task": task.get('title'),
+                            "completed": task.get('completed'),
+                            "username": emp_uname}
+                tasks_obj.append(task_obj)
+        json_obj = {str(emp_id): tasks_obj}
+        json.dump(json_obj, f)
